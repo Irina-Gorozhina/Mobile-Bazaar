@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/admin_staff.css">
+    <title>The Best Mobile Bazaar - Admin Panel</title>
+</head>
+<body>
+<%- include("partials/header.ejs") %>
+<main class="admin admin_staff">
+    <div class="header">
+        <%- include("partials/admin_header.ejs") %>
+    </div>
+    <div class="content">
+        <div class="table">
+            <div class="title">
+                <div class="buttons">Actions</div>
+                <div class="firstname">First Name</div>
+                <div class="lastname">Last Name</div>
+                <div class="role">Role</div>
+                <div class="username">User Name</div>
+
+            </div>
+            <div class="rows">
+                <% for (const item of allStaff) { %>
+                    <div class="row">
+                        <div class="buttons">
+                            <a href="/admin_staff?edit_id=<%= item.id %>" class="edit_button">Edit</a>
+                        </div>
+                        <div class="firstname"><%= item.first_name %></div>
+                        <div class="lastname"><%= item.last_name %></div>
+                        <div class="role"><%= item.access_role %></div>
+                        <div class="username"><%= item.username %></div>
+
+                    </div>
+                <% }%>
+
+            </div>
+        </div>
+        <div class="edit">
+            <a href="/admin_staff" class="create">Create</a>
+            <form action="/admin_staff" method="post">
+                <div class="item hidden">
+                    <div class="edit_title"></div>
+                    <div class="edit_input">
+                        <input type="number" value="<%= editStaff.id %>" name="id">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">First Name</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editStaff.first_name %>" name="first_name">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Last Name</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editStaff.last_name %>" name="last_name">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Role</div>
+                    <div class="edit_input">
+                        <select name="access_role" id="access-role">
+                            <option
+                                    <%= editStaff.access_role=="admin" ? "selected" : "" %>
+                                    value="admin">Admin</option>
+                            <option
+                                    <%= editStaff.access_role=="stock" ? "selected" : "" %>
+                                    value="stock">Stock</option>
+                            <option
+                                    <%= editStaff.access_role=="sales" ? "selected" : "" %>
+                                    value="sales">Sales</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">UserName</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editStaff.username %>" name="username">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Password</div>
+                    <div class="edit_input">
+                        <input type="password" value="<%= editStaff.password %>" name="password">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <% if (editStaff.id == "0") { %>
+                        <button name="action" class="submit" type="submit" value="create">Create</button>
+                    <% } else { %>
+                        <button name="action" class="submit" type="submit" value="update">Update</button>
+                        <button name="action" class="remove" type="submit" value="delete">Delete</button>
+                    <% } %>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<%- include("partials/footer.ejs") %>
+<%- include("partials/scripts.ejs") %>
+</body>
+</html>

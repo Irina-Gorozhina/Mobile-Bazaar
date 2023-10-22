@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/admin_orders.css">
+    <title>The Best Mobile Bazaar - Admin Panel</title>
+</head>
+<body>
+<%- include("partials/header.ejs") %>
+<main class="admin admin_orders">
+    <div class="header">
+        <%- include("partials/admin_header.ejs") %>
+    </div>
+    <div class="content">
+        <div class="table">
+            <div class="title">
+                <div class="buttons">Actions</div>
+                <div class="product_id">Product ID</div>
+                <div class="status">Order Status</div>
+                <div class="firstname">First Name</div>
+                <div class="lastname">Last Name</div>
+                <div class="phone">Phone</div>
+                <div class="email">Eamil</div>
+                <div class="date">Date</div>
+                <div class="country">Country</div>
+                <div class="city">City</div>
+                <div class="address">Address</div>
+                <div class="state">State</div>
+                <div class="post_code">Post Code</div>
+                <div class="count">Count</div>
+                <div class="price">Price</div>
+            </div>
+            <div class="rows">
+                <% for (const item of allItems) { %>
+                    <div class="row">
+                        <div class="buttons">
+                            <a href="/admin_orders?edit_id=<%= item.id %>" class="edit_button">Edit</a>
+                        </div>
+                        <div class="product_id"><%= item.product_id %></div>
+                        <div class="status"><%= item.status %></div>
+                        <div class="firstname"><%= item.customer_first_name %></div>
+                        <div class="lastname"><%= item.customer_last_name %></div>
+                        <div class="phone"><%= item.customer_phone %></div>
+                        <div class="email"><%= item.customer_email %></div>
+                        <div class="date"><%= item.datetime %></div>
+                        <div class="country"><%= item.customer_country %></div>
+                        <div class="city"><%= item.customer_city %></div>
+                        <div class="address"><%= item.customer_address %></div>
+                        <div class="state"><%= item.customer_state %></div>
+                        <div class="post_code"><%= item.customer_post_code %></div>
+                        <div class="count"><%= item.count %></div>
+                        <div class="price"><%= item.total_price %></div>
+
+                    </div>
+                <% }%>
+            </div>
+        </div>
+        <div class="edit">
+            <a href="/admin_orders" class="create">Create</a>
+            <form action="/admin_orders" method="post">
+                <div class="item hidden">
+                    <div class="edit_title"></div>
+                    <div class="edit_input">
+                        <input type="number" value="<%= editItem.id %>" name="id">
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="edit_title">Status</div>
+                    <div class="edit_input">
+                        <select name="status" required>
+                            <option
+                                    <%= editItem.status=="pending" ? "selected" : "" %>
+                                    value="pending">Pending</option>
+                            <option
+                                    <%= editItem.status=="complete" ? "selected" : "" %>
+                                    value="complete">Complete</option>
+                            <option
+                                    <%= editItem.status=="cancelled" ? "selected" : "" %>
+                                    value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">First Name</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_first_name %>" name="customer_first_name" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Last Name</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_last_name %>" name="customer_last_name" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Phone</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_phone %>" name="customer_phone" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Email</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_email %>" name="customer_email" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Country</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_country %>" name="customer_country" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">City</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_city %>" name="customer_city" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Address</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_address %>" name="customer_address" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">State</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_state %>" name="customer_state" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Post code</div>
+                    <div class="edit_input">
+                        <input type="text" value="<%= editItem.customer_post_code %>" name="customer_post_code" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">Count</div>
+                    <div class="edit_input">
+                        <input type="number" value="<%= editItem.count %>" name="count" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">total price</div>
+                    <div class="edit_input">
+                        <input type="number" value="<%= editItem.total_price %>" name="total_price" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="edit_title">product_id</div>
+                    <div class="edit_input">
+                        <select name="product_id" required>
+                            <% for (const prod of allProducts) { %>
+                                <option <%= editItem.product_id==prod.id? "selected" : "" %>
+                                        value="<%= prod.id %>"><%= prod.id %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <% if (editItem.id == "0") { %>
+                        <button name="action" class="submit" type="submit" value="create">Create</button>
+                    <% } else { %>
+                        <button name="action" class="submit" type="submit" value="update">Update</button>
+                        <button name="action" class="remove" type="submit" value="delete">Delete</button>
+                    <% } %>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<%- include("partials/footer.ejs") %>
+<%- include("partials/scripts.ejs") %>
+</body>
+</html>
