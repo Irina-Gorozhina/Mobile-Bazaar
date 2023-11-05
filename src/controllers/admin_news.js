@@ -7,7 +7,7 @@ import * as Changelog from "../models/changelog.js";
 const adminNewsController = express.Router();
 
 adminNewsController.get("/admin_news",
-    access_control(["admin"]),
+    access_control(["admin","stock", "sales" ]),
     (request, response) => {
         const editID = request.query.edit_id;
         if (editID) {
@@ -46,7 +46,7 @@ adminNewsController.get("/admin_news",
     })
 
 adminNewsController.post("/admin_news",
-    access_control(["admin"]),
+    access_control(["admin","stock", "sales" ]),
     (request, response) => {
         const formData = request.body;
 
@@ -60,7 +60,7 @@ adminNewsController.post("/admin_news",
         const userUpdateChangelogEntry = Changelog.newChangelog(
             null,
             null,
-            request.session.user.staffID,
+            request.session.user.username,
             "User " + formData.action + "d news with id " + editModel.id
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {

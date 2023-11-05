@@ -15,6 +15,7 @@ import adminOrdersController from "./controllers/admin_orders.js";
 import adminProductsController from "./controllers/admin_products.js";
 import adminNewsController from "./controllers/admin_news.js";
 import adminContactsController from "./controllers/admin_contacts.js";
+import adminChangelogController from "./controllers/admin_changelog.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -49,6 +50,7 @@ app.use(adminOrdersController);
 app.use(adminProductsController);
 app.use(adminNewsController);
 app.use(adminContactsController);
+app.use(adminChangelogController);
 
 app.get("/", (request, response) => {
   response.status(301).redirect("/home")

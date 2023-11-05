@@ -18,12 +18,13 @@ authController.post('/auth_login', (request, response) => {
             request.session.user = {
                 staffID: staff.id,
                 accessRole: staff.access_role,
+                username: staff.username
             }
 
             const userLoginChangelogEntry = Changelog.newChangelog(
                 null,
                 null,
-                staff.id,
+                staff.username,
                 "User logged in"
             )
             Changelog.create(userLoginChangelogEntry).catch(error => {

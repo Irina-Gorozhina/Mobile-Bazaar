@@ -7,8 +7,9 @@ import * as Changelog from "../models/changelog.js";
 const adminContactsController = express.Router();
 
 adminContactsController.get("/admin_contacts",
-    access_control(["admin"]),
+    access_control(["admin","stock", "sales"]),
     (request, response) => {
+        
         const editID = request.query.edit_id;
         if (editID) {
             Promise.all([
@@ -46,7 +47,7 @@ adminContactsController.get("/admin_contacts",
     })
 
 adminContactsController.post("/admin_contacts",
-    access_control(["admin"]),
+    access_control(["admin","stock", "sales" ]),
     (request, response) => {
         const formData = request.body;
 
@@ -58,13 +59,15 @@ adminContactsController.post("/admin_contacts",
             formData.description
         )
 
+        console.log( request.session.user);
         const userUpdateChangelogEntry = Changelog.newChangelog(
             null,
             null,
-            request.session.user.staffID,
+            request.session.user.username,
             "User " + formData.action + "d contacts with id " + editModel.id
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {
+            console.log(error);
             console.log("Failed to add to change log: " + userUpdateChangelogEntry);
         })
 

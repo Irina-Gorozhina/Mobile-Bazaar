@@ -4,6 +4,7 @@
     padding: 15px 0;
     border-top: 4px solid #000;
     border-bottom: 4px solid #000;
+    overflow-x: auto;
 }
 .admin_header a {
     color: #000;
@@ -130,6 +131,9 @@
 }
 
 @media screen and (max-width: 1000px) {
+    .admin_header {
+        padding: 15px 20px;
+    }
     .admin .content {
         flex-direction: column;
         gap: 20px;
