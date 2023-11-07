@@ -1,3 +1,14 @@
+.error-text {
+    color: red; 
+    display: none;
+}
+
+input:invalid + .error-text,
+textarea:invalid + .error-text {
+    display: block;
+    
+}
+
 .admin .contacts_id {
     min-width: 100px;
     width: 100%;
@@ -19,4 +30,6 @@
     min-width: 100px;
     width: 100%;
 }
+
+
 

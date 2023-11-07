@@ -1,13 +1,21 @@
+
+
 .admin .user_id,
-.admin .message,
 .admin .date,
-.admin .buttons {
+.admin .message {
     min-width: 100px;
     width: 100%;
 }
 
-.admin .buttons {
-    min-width: 100px;
-    width: 100%;
+.admin .title .bold {
+    font-weight: bold;
 }
 
+.admin .user_id {
+    min-width: 200px;
+}
+
+.admin .title .user_id,
+.admin .rows .user_id {
+    min-width: 200px;
+}

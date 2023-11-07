@@ -47,40 +47,44 @@
                         <input type="number" value="<%= editStaff.id %>" name="id">
                     </div>
                 </div>
+
                 <div class="item">
                     <div class="edit_title">First Name</div>
                     <div class="edit_input">
-                        <input type="text" value="<%= editStaff.first_name %>" name="first_name">
+                        <input type="text" value="<%= editStaff.first_name %>" name="first_name" id="first-name" required pattern="[a-zA-Z '\-]+" maxlength="45">
+                        <span class="error-text">First name can only contain characters, spaces, hypens and single quotes</span>
                     </div>
                 </div>
+                   
                 <div class="item">
                     <div class="edit_title">Last Name</div>
                     <div class="edit_input">
-                        <input type="text" value="<%= editStaff.last_name %>" name="last_name">
+                        <input type="text" value="<%= editStaff.last_name %>" name="last_name" id="last-name" required pattern="^[a-zA-Z '\-]+$" maxlength="70">
+                        <span class="error-text">Last name can only contain characters, spaces, hyphens, and single quotes</span>
                     </div>
                 </div>
+
                 <div class="item">
                     <div class="edit_title">Role</div>
                     <div class="edit_input">
-                        <select name="access_role" id="access-role">
-                            <option
-                                    <%= editStaff.access_role=="admin" ? "selected" : "" %>
-                                    value="admin">Admin</option>
-                            <option
-                                    <%= editStaff.access_role=="stock" ? "selected" : "" %>
-                                    value="stock">Stock</option>
-                            <option
-                                    <%= editStaff.access_role=="sales" ? "selected" : "" %>
-                                    value="sales">Sales</option>
+                        <select name="access_role" id="access-role" required>
+                            <option value="" disabled selected hidden>Select a role</option>
+                            <option <%= editStaff.access_role == "admin" ? "selected" : "" %> value="admin">Admin</option>
+                            <option <%= editStaff.access_role == "stock" ? "selected" : "" %> value="stock">Stock</option>
+                            <option <%= editStaff.access_role == "sales" ? "selected" : "" %> value="sales">Sales</option>
                         </select>
+                        <span class="error-text">Please select a role</span>
                     </div>
                 </div>
+
                 <div class="item">
                     <div class="edit_title">UserName</div>
                     <div class="edit_input">
-                        <input type="text" value="<%= editStaff.username %>" name="username">
+                        <input type="text" value="<%= editStaff.username %>" name="username" id="username" required pattern="[a-zA-Z0-9\.\-_]{3,}" minlength="3" maxlength="30">
+                        <span class="error-text">Username must be at least 3 characters, start with a letter, and can contain letters, numbers, periods, hyphens, and underscores.</span>
                     </div>
                 </div>
+                
                 <div class="item">
                     <div class="edit_title">Password</div>
                     <div class="edit_input">

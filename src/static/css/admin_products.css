@@ -1,19 +1,23 @@
+.admin .product_id,
+.admin .name,
 .admin .stock,
 .admin .price,
-.admin .product_id {
-    min-width: 100px;
-    width: 100%;
-}
-
+.admin .description,
 .admin .brand,
-.admin .type,
-.admin .name {
-    min-width: 150px;
-    width: 100%;
+.admin .type {
+    min-width: 100px;
+    width: auto;
 }
 
 .admin .description {
     min-width: 300px;
-    width: 100%;
+    width: auto;
+    font-size: 14px; 
 }
 
+.admin .table .title div,
+.admin .table .rows .row div {
+    word-wrap: break-word;
+    padding: 0 15px;
+    font-size: 14px; 
+}

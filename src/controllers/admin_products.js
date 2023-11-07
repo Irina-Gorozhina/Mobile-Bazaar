@@ -4,6 +4,7 @@ import * as Order from "../models/orders.js";
 import * as Product from "../models/products.js";
 import access_control from "../access_control.js";
 import * as Changelog from "../models/changelog.js";
+import validator from "validator";
 
 const adminProductsController = express.Router();
 

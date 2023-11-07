@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import express from "express"
 import * as Staff from "../models/staff.js"
 import * as Changelog from "../models/changelog.js"
+import validator from "validator";
 
 const authController = express.Router();
 

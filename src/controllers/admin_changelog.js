@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import access_control from "../access_control.js";
 import * as Users from './../models/staff.js';
 import * as Changelog from "../models/changelog.js";
+import validator from "validator";
 
 const adminChangelogController = express.Router();
 

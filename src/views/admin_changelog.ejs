@@ -14,8 +14,7 @@
         </div>
         <div class="content">
             <div class="table">
-                <div class="title">
-                    <div class="buttons">Actions</div>
+                <div class="title title-bold">
                     <div class="user_id">User Name</div>
                     <div class="date">Date</div>
                     <div class="message">Message</div>
@@ -24,7 +23,7 @@
                     <% for (const item of allItems) { %>
                         <div class="row">
                             <div class="buttons">
-                                <a href="/admin_changelog?edit_id=<%= item.id %>" class="edit_button">Edit</a>
+                        
                             </div>
                             <div class="user_id"><%= item.username %></div>
                             <div class="date"><%= item.date %></div>
@@ -33,36 +32,7 @@
                     <% } %>
                 </div>
             </div>
-            <div class="edit">
-                <a href="/admin_changelog" class="create">Create</a>
-                <form action="/admin_changelog" method="post">
-                    <div class="item hidden">
-                        <div class="edit_title"></div>
-                        <div class="edit_input">
-                            <input type="number" value="<%= editItem.id %>" name="id">
-                        </div>
-                    </div>
-                   
-                    <div class="item">
-                        <div class="edit_title">User Name</div>
-                        <div class="edit_input">
-                            <input type="text" value="<%= editItem.username %>" name="username">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="edit_title">Message</div>
-                        <div class="edit_input">
-                            <textarea name="message" rows="20" required><%= editItem.message %></textarea>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <% if (editItem.id === 0) { %>
-                            <button name="action" class="submit" type="submit" value="create">Create</button>
-                        <% } else { %>
-                            <button name="action" class="submit" type="submit" value="update">Update</button>
-                            <button name="action" class="remove" type="submit" value="delete">Delete</button>
-                        <% } %>
-                    </div>
+                    
                 </form>
             </div>
         </div>
