@@ -1,4 +1,5 @@
 import { db_conn } from "../db/database.js";
+import * as security from "../../security.js";
 
 export function newChangelog(
     id,
@@ -6,12 +7,14 @@ export function newChangelog(
     username,
     message,
 ) {
-    return {
+    const obj={
         id,
         date,
         username,
         message
-    }
+     }
+     security.makeReadable(obj)
+     return obj
 }
 
 export function getAll() {
@@ -53,6 +56,7 @@ export function getById(newsID) {
 }
 
 export function create(changelog) {
+    security.sanitize(changelog)
     return db_conn.query(`
     INSERT INTO changelog
     (changelog_id, changelog_date, changelog_username, changelog_message)
@@ -61,7 +65,7 @@ export function create(changelog) {
 }
 
 export function update(changelog) {
-    console.log(changelog);
+    security.sanitize(changelog)
     return db_conn.query(
         `
         UPDATE changelog

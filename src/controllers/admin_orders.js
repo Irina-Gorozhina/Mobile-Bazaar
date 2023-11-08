@@ -64,7 +64,6 @@ adminOrdersController.post("/admin_orders",
     access_control(["admin","stock", "sales" ]),
     (request, response) => {
         const formData = request.body;
-
         const editModel = Order.newOrder(
             formData.id,
             formData.status,

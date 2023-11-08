@@ -1,4 +1,5 @@
 import { db_conn } from "../db/database.js";
+import * as security from "../../security.js";
 
 // Order model (object) constructor
 export function newOrder(
@@ -18,7 +19,7 @@ export function newOrder(
     total_price,
     product_id,
 ) {
-    return {
+    const order = {
         id,
         status,
         datetime,
@@ -35,6 +36,8 @@ export function newOrder(
         total_price,
         product_id,
     }
+    security.makeReadable(order)
+    return order
 }
 
 export function getAll() {
@@ -101,6 +104,7 @@ export function getById(orderID) {
 
 
 export function create(order) {
+    security.sanitize(order)
     return db_conn.query(
         `
         INSERT INTO orders (product_id, order_status, order_datetime, customer_first_name, customer_last_name, customer_phone, customer_email,  
