@@ -13,11 +13,21 @@
             <%- include("partials/admin_header.ejs") %>
         </div>
         <div class="content">
+            <div class="form">
+                <form action="/admin_changelog" method="get">
+                    <label for="start_date">Start:</label>
+                    <input type="date" id="start_date" name="start_date" min="2023-01-01" max="2030-12-31" value="<%= startDate %>" required>
+                    <label for="end_date">End:</label>
+                    <input type="date" id="end_date" name="end_date" min="2023-01-01" max="2030-12-31" value="<%= endDate %>">
+                    <input type="submit" value="Search" />
+                  </form>
+            </div>
             <div class="table">
                 <div class="title title-bold">
                     <div class="user_id">User Name</div>
                     <div class="date">Date</div>
                     <div class="message">Message</div>
+                    <div class="user_id">Product</div>
                 </div>
                 <div class="rows">
                     <% for (const item of allItems) { %>
@@ -25,15 +35,13 @@
                             <div class="buttons">
                         
                             </div>
-                            <div class="user_id"><%= item.username %></div>
+                            <div class="user_id"><%= item.staffId %></div>
                             <div class="date"><%= item.date %></div>
                             <div class="message"><%= item.message %></div>
+                            <div class="message"><%= item.productId %></div>
                         </div>
                     <% } %>
                 </div>
-            </div>
-                    
-                </form>
             </div>
         </div>
     </main>

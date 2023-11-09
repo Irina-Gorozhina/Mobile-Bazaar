@@ -66,9 +66,12 @@ adminStaffController.post("/admin_staff",
             null,
             null,
             request.session.user.username,
-            "User " + formData.action + "d another user with id " + editStaff.id
+            "User " + formData.action + "d another user with id " + editStaff.id,
+            request.session.user.staffID,
+            -1,
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {
+            console.log(error);
             console.log("Failed to add to change log: " + userUpdateChangelogEntry);
         })
 

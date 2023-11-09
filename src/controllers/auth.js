@@ -13,7 +13,7 @@ authController.get("/auth_login", (request, response) => {
 authController.post('/auth_login', (request, response) => {
     const login_username = request.body.username;
     const login_password = request.body.password;
-
+console.log(login_username);
     Staff.getByUsername(login_username).then(staff => {
         if (bcrypt.compareSync(login_password, staff.password)) {
             request.session.user = {
@@ -26,9 +26,13 @@ authController.post('/auth_login', (request, response) => {
                 null,
                 null,
                 staff.username,
-                "User logged in"
+                "User logged in",
+                staff.id,
+                -1,
             )
+            console.log('sdfsdf')
             Changelog.create(userLoginChangelogEntry).catch(error => {
+                console.log(error); 
                 console.log("Failed to add to change log: " + userLoginChangelogEntry)
             })
 
@@ -41,6 +45,7 @@ authController.post('/auth_login', (request, response) => {
             })
         }
     }).catch(error => {
+        console.log(error);
         response.render("status", {
             status: "Login Failed",
             message: "The user was not found"

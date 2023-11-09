@@ -19,3 +19,8 @@
 .admin .rows .user_id {
     min-width: 200px;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+}

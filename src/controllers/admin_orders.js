@@ -86,9 +86,12 @@ adminOrdersController.post("/admin_orders",
             null,
             null,
             request.session.user.username,
-            "User " + formData.action + "d order with id " + editModel.id
+            "User " + formData.action + "d order with id " + editModel.id,
+            request.session.user.staffID,
+            -1,
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {
+            console.log(error)
             console.log("Failed to add to change log: " + userUpdateChangelogEntry);
         })
 

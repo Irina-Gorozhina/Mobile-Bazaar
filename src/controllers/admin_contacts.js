@@ -67,7 +67,9 @@ adminContactsController.post("/admin_contacts",
             null,
             null,
             request.session.user.username,
-            "User " + formData.action + "d contacts with id " + editModel.id
+            "User " + formData.action + "d contacts with id " + editModel.id,
+            request.session.user.staffID,
+            -1,
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {
             console.log(error);

@@ -69,9 +69,12 @@ adminProductsController.post("/admin_products",
             null,
             null,
             request.session.user.username,
-            "User " + formData.action + "d product with id " + editModel.id
+            "User " + formData.action + "d product with id " + editModel.id,
+            request.session.user.staffID,
+            formData.id,
         )
         Changelog.create(userUpdateChangelogEntry).catch(error => {
+            console.log(error);
             console.log("Failed to add to change log: " + userUpdateChangelogEntry);
         })
 
